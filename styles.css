@@ -1,5 +1,5 @@
 header {
-    background-color: #f00; /* A bright red */
+    background-color: rgb(255, 107, 107); /* A paler red */
     color: white;
     padding: 20px;
     text-align: center;
@@ -10,4 +10,15 @@ header {
     grid-template-columns: repeat(3, 1fr); /* 3 columns */
     gap: 20px;
     padding: 20px;
+}
+
+.pokemon-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.pokemon-item img {
+    width: 100px;
+    height: 100px;
 }
