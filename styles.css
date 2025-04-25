@@ -1,8 +1,9 @@
 header {
-    background-color: rgb(255, 107, 107); /* A paler red */
+    background-color: #356697; /* switched to  */
     color: white;
     padding: 20px;
     text-align: center;
+    font-family: sans-serif;
 }
 
 .pokemon-grid {
