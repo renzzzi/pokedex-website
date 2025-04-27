@@ -12,6 +12,18 @@ header {
     width: 200px;
 }
 
+.type-tabs {
+    margin-top: 10px;
+}
+
+.type-tab {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    background-color: #ddd;
+    cursor: pointer;
+}
+
 .pokemon-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 columns */
