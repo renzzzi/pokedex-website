@@ -1,5 +1,5 @@
 header {
-    background-color: #356697; /* switched to  */
+    background-color: #336699;
     color: white;
     padding: 20px;
     text-align: center;
@@ -22,6 +22,14 @@ header {
     border: none;
     background-color: #ddd;
     cursor: pointer;
+}
+
+.type-tab:hover {
+    background-color: #ccc;
+}
+
+.type-tab.active {
+    background-color: #bbb;
 }
 
 .pokemon-grid {
