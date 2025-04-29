@@ -49,3 +49,19 @@ header {
     width: 100px;
     height: 100px;
 }
+
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination button {
+    padding: 5px 15px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+#page-info {
+    display: inline-block;
+    min-width: 80px;
+}
