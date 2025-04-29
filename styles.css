@@ -1,3 +1,39 @@
+:root {
+    --pokemon-red: #FF0000;
+    --pokemon-blue: #3B4CCA;
+    --pokemon-yellow: #FFDE00;
+    --pokemon-gold: #B3A125;
+    --pokemon-black: #2A2A2A;
+    --pokemon-white: #FFFFFF;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    background-image: linear-gradient(45deg, #ffffff 25%, transparent 25%),
+                      linear-gradient(-45deg, #ffffff 25%, transparent 25%),
+                      linear-gradient(45deg, transparent 75%, #ffffff 75%),
+                      linear-gradient(-45deg, transparent 75%, #ffffff 75%);
+    background-size: 20px 20px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+header {
+    background-color: var(--pokemon-red);
+    color: var(--pokemon-white);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    text-shadow: 2px 2px var(--pokemon-black);
+    font-size: 2em;
+    margin: 0;
+    padding: 10px;
+}
+
 header {
     background-color: #336699;
     color: white;
