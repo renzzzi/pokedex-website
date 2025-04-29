@@ -1,30 +1,4 @@
 $(document).ready(function() {
-    // Function to apply both search and type filters
-    function applyFilters() {
-        var searchValue = $("#search-bar").val().toLowerCase();
-        var selectedType = $(".type-tab.active").data("type") || "all"; // Get active tab or default to "all"
-
-        $(".pokemon-item").each(function() {
-            var $this = $(this);
-            var textMatch = $this.text().toLowerCase().indexOf(searchValue) > -1;
-            var typeMatch = selectedType === "all" || $this.data("type") === selectedType;
-
-            $this.toggle(textMatch && typeMatch);
-        });
-    }
-
-    $("#search-bar").on("keyup", applyFilters);
-
-    $(".type-tab").on("click", function() {
-        $(".type-tab").removeClass("active");
-        $(this).addClass("active"); 
-        applyFilters();
-    });
-
-    applyFilters();
-});
-
-$(document).ready(function() {
     const POKEMON_PER_PAGE = 9;
     let currentPage = 1;
     let allPokemon = [];
