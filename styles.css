@@ -187,3 +187,56 @@ header {
     color: var(--pokemon-black);
     margin: 0 20px;
 }
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.pokemon-item[data-type="fire"] { border-color: #FF4422; }
+.pokemon-item[data-type="water"] { border-color: #3399FF; }
+.pokemon-item[data-type="grass"] { border-color: #77CC55; }
+.pokemon-item[data-type="electric"] { border-color: #FFCC33; }
+.pokemon-item[data-type="psychic"] { border-color: #FF5599; }
+.pokemon-item[data-type="fighting"] { border-color: #BB5544; }
+.pokemon-item[data-type="rock"] { border-color: #BBAA66; }
+.pokemon-item[data-type="ground"] { border-color: #DDBB55; }
+.pokemon-item[data-type="flying"] { border-color: #8899FF; }
+.pokemon-item[data-type="bug"] { border-color: #AABB22; }
+.pokemon-item[data-type="poison"] { border-color: #AA5599; }
+.pokemon-item[data-type="normal"] { border-color: #AAAA99; }
+.pokemon-item[data-type="ghost"] { border-color: #6666BB; }
+.pokemon-item[data-type="dragon"] { border-color: #7766EE; }
+.pokemon-item[data-type="ice"] { border-color: #66CCFF; }
+
+.pokemon-item:hover img {
+    animation: bounce 0.5s ease infinite;
+}
+
+@media (max-width: 768px) {
+    .pokemon-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.5em;
+    }
+    
+    #search-bar {
+        width: 200px;
+    }
+    
+    .type-tab {
+        font-size: 8px;
+        padding: 6px 12px;
+        margin: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pokemon-grid {
+        grid-template-columns: 1fr;
+    }
+}
