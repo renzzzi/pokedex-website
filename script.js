@@ -34,6 +34,7 @@ $(document).ready(function() {
         const data = await response.json();
         allPokemon = data.results;
         loadPokemonData(currentPage);
+        updatePaginationControls();
     }
 
     async function loadPokemonData(page) {
@@ -57,6 +58,30 @@ $(document).ready(function() {
             $('.pokemon-grid').append(pokemonItem);
         }
     }
+
+    function updatePaginationControls() {
+        const totalPages = Math.ceil(allPokemon.length / POKEMON_PER_PAGE);
+        $('#page-info').text(`Page ${currentPage}`);
+        $('#prev-page').prop('disabled', currentPage === 1);
+        $('#next-page').prop('disabled', currentPage === totalPages);
+    }
+
+    $('#prev-page').click(function() {
+        if (currentPage > 1) {
+            currentPage--;
+            loadPokemonData(currentPage);
+            updatePaginationControls();
+        }
+    });
+
+    $('#next-page').click(function() {
+        const totalPages = Math.ceil(allPokemon.length / POKEMON_PER_PAGE);
+        if (currentPage < totalPages) {
+            currentPage++;
+            loadPokemonData(currentPage);
+            updatePaginationControls();
+        }
+    });
 
     fetchAllPokemon();
 });
