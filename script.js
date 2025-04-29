@@ -2,14 +2,40 @@ $(document).ready(function() {
     const POKEMON_PER_PAGE = 9;
     let currentPage = 1;
     let allPokemon = [];
+    let filteredPokemon = [];
 
     async function fetchAllPokemon() {
         const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
         const data = await response.json();
         allPokemon = data.results;
+        filteredPokemon = allPokemon;
         loadPokemonData(currentPage);
         updatePaginationControls();
     }
+
+    async function filterByType(type) {
+        if (type === 'all') {
+            filteredPokemon = allPokemon;
+        } else {
+            filteredPokemon = [];
+            for (const pokemon of allPokemon) {
+                const detailResponse = await fetch(pokemon.url);
+                const details = await detailResponse.json();
+                if (details.types.some(t => t.type.name === type)) {
+                    filteredPokemon.push(pokemon);
+                }
+            }
+        }
+        currentPage = 1;
+        loadPokemonData(currentPage);
+        updatePaginationControls();
+    }
+
+    $('.type-tab').click(function() {
+        $('.type-tab').removeClass('active');
+        $(this).addClass('active');
+        filterByType($(this).data('type'));
+    });
 
     async function loadPokemonData(page) {
         const start = (page - 1) * POKEMON_PER_PAGE;
