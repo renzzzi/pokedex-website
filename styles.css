@@ -152,16 +152,38 @@ header {
 
 .pagination {
     text-align: center;
-    margin: 20px 0;
+    margin: 30px 0;
+    padding: 20px;
 }
 
 .pagination button {
-    padding: 5px 15px;
-    margin: 0 10px;
+    font-family: 'Press Start 2P', cursive;
+    padding: 10px 20px;
+    margin: 0 15px;
     cursor: pointer;
+    background-color: var(--pokemon-red);
+    color: var(--pokemon-white);
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+    background-color: #cc0000;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.pagination button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
 
 #page-info {
     display: inline-block;
-    min-width: 80px;
+    min-width: 100px;
+    font-size: 14px;
+    color: var(--pokemon-black);
+    margin: 0 20px;
 }
