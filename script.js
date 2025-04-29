@@ -13,34 +13,43 @@ $(document).ready(function() {
         updatePaginationControls();
     }
 
-    async function filterByType(type) {
-        if (type === 'all') {
-            filteredPokemon = allPokemon;
-        } else {
-            filteredPokemon = [];
-            for (const pokemon of allPokemon) {
+    async function filterPokemon() {
+        const searchTerm = $('#search-bar').val().toLowerCase();
+        const selectedType = $('.type-tab.active').data('type');
+
+        filteredPokemon = allPokemon.filter(pokemon => 
+            pokemon.name.toLowerCase().includes(searchTerm)
+        );
+
+        if (selectedType && selectedType !== 'all') {
+            const tempFiltered = [];
+            for (const pokemon of filteredPokemon) {
                 const detailResponse = await fetch(pokemon.url);
                 const details = await detailResponse.json();
-                if (details.types.some(t => t.type.name === type)) {
-                    filteredPokemon.push(pokemon);
+                if (details.types.some(t => t.type.name === selectedType)) {
+                    tempFiltered.push(pokemon);
                 }
             }
+            filteredPokemon = tempFiltered;
         }
+
         currentPage = 1;
         loadPokemonData(currentPage);
         updatePaginationControls();
     }
 
+    $('#search-bar').on('keyup', filterPokemon);
+    
     $('.type-tab').click(function() {
         $('.type-tab').removeClass('active');
         $(this).addClass('active');
-        filterByType($(this).data('type'));
+        filterPokemon();
     });
 
     async function loadPokemonData(page) {
         const start = (page - 1) * POKEMON_PER_PAGE;
         const end = start + POKEMON_PER_PAGE;
-        const pokemonToLoad = allPokemon.slice(start, end);
+        const pokemonToLoad = filteredPokemon.slice(start, end);
 
         $('.pokemon-grid').empty();
 
@@ -60,7 +69,7 @@ $(document).ready(function() {
     }
 
     function updatePaginationControls() {
-        const totalPages = Math.ceil(allPokemon.length / POKEMON_PER_PAGE);
+        const totalPages = Math.ceil(filteredPokemon.length / POKEMON_PER_PAGE);
         $('#page-info').text(`Page ${currentPage}`);
         $('#prev-page').prop('disabled', currentPage === 1);
         $('#next-page').prop('disabled', currentPage === totalPages);
@@ -75,7 +84,7 @@ $(document).ready(function() {
     });
 
     $('#next-page').click(function() {
-        const totalPages = Math.ceil(allPokemon.length / POKEMON_PER_PAGE);
+        const totalPages = Math.ceil(filteredPokemon.length / POKEMON_PER_PAGE);
         if (currentPage < totalPages) {
             currentPage++;
             loadPokemonData(currentPage);
